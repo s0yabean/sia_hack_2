@@ -32,7 +32,7 @@ def get_connection(db='sia_app'):
 e = get_engine()
 
 #app = Flask(_name_)
-api = Api(app)
+#api = Api(app)
 
 """
 class get_data(Resource):
