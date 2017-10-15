@@ -9,9 +9,9 @@ app = Flask(__name__)
 import pandas as pd
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
-from json import dumps
+#from json import dumps
 
-"""
+
 connection_strings = {
     "sia_app" : "postgres://oehrcduj:1bZl-rS-k6mVxgRSKzE1cFZa1KXTb8bR@elmer.db.elephantsql.com:5432/oehrcduj"
 }
@@ -34,6 +34,7 @@ e = get_engine()
 #app = Flask(_name_)
 api = Api(app)
 
+"""
 class get_data(Resource):
     def get(self):
         #Connect to databse
@@ -82,6 +83,15 @@ def homepage2():
 
     <img src="http://loremflickr.com/600/400">
     """.format(time=the_time)
+
+@app.route('/tony2')
+def homepage3():
+    conn = e.connect()
+    query = "select * from public.sia_app_db"
+        #Query the result and get cursor.Dumping that data to a JSON is looked by extension
+    df = pd.read_sql(query, conn)
+    json = df.to_json()
+    return json
 
 
 
