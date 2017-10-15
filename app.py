@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 
 ######################################
+"""
 import pandas as pd
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
@@ -55,7 +56,7 @@ class post_data(Resource):
  
 api.add_resource(get_data, '/get_data')
 api.add_resource(post_data, '/post_data')
-
+"""
 
 ######################################
 
