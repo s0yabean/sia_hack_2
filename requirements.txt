@@ -2,5 +2,5 @@ Flask
 gunicorn
 sqlalchemy
 pandas
-son
+json
 flask_restful
