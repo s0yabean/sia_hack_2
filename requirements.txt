@@ -1,5 +1,6 @@
 Flask
 gunicorn
+flask_sqlalchemy
 sqlalchemy
 pandas
 flask_restful

@@ -5,9 +5,38 @@ app = Flask(__name__)
 
 
 ######################################
+"""
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
+POSTGRES = {
+    'user': 'oehrcduj',
+    'pw': '1bZl-rS-k6mVxgRSKzE1cFZa1KXTb8bR',
+    'db': 'oehrcduj',
+    'host': 'elmer.db.elephantsql.com',
+    'port': '5432',
+}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://oehrcduj' % POSTGRES
+db.init_app(app)
+"""
+
+######################################
+
+import json
+import psycopg2
+import sys
+
+with open('config.json') as f:
+    conf = json.load(f)
+conn_str = "host={} dbname={} user={} password={}".format(conf['host'], conf['database'], conf['user'], conf['password'])
+
+conn = psycopg2.connect(conn_str)
+cursor = conn.cursor()
+
+######################################
+"""
 import pandas as pd
-from flask_restful import Resource, Api
+from flask_restful import Resource#, Api
 from sqlalchemy import create_engine
 #from json import dumps
 
@@ -34,7 +63,7 @@ e = get_engine()
 #app = Flask(_name_)
 #api = Api(app)
 
-"""
+
 class get_data(Resource):
     def get(self):
         #Connect to databse
@@ -86,13 +115,12 @@ def homepage2():
 
 @app.route('/tony2')
 def homepage3():
-    conn = e.connect()
-    query = "select * from public.sia_app_db"
-        #Query the result and get cursor.Dumping that data to a JSON is looked by extension
-    df = pd.read_sql(query, conn)
-    json = df.to_json()
-    return json
-
+    cursor.execute("""select * from public.sia_app_db""")
+    all_rows = cursor.fetchall()
+    from flask.json import jsonify
+   
+    return jsonify(all_rows)
+ 
 
 
 if __name__ == '__main__':
