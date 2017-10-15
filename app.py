@@ -117,11 +117,7 @@ def homepage2():
 def homepage3():
     cursor.execute("""select * from public.sia_app_db""")
     all_rows = cursor.fetchall()
-    from flask.json import jsonify
-   
-    return jsonify(all_rows)
- 
-
+    return all_rows
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
