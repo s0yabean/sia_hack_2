@@ -122,8 +122,8 @@ def homepage3():
     return jsonify(all_rows)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, use_reloader=True)
+  #  app.run(host="0.0.0.0", debug=True, use_reloader=True)
 
-
-   # port = int(os.environ.get("PORT", 5000))
-  #  app.run(host="0.0.0.0", port=port)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True, use_reloader=True)
