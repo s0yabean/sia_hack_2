@@ -1,2 +1,6 @@
 Flask
 gunicorn
+sqlalchemy
+pandas
+son
+flask_restful

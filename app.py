@@ -5,13 +5,13 @@ app = Flask(__name__)
 
 
 ######################################
-"""
+
 import pandas as pd
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 
-
+"""
 connection_strings = {
     "sia_app" : "postgres://oehrcduj:1bZl-rS-k6mVxgRSKzE1cFZa1KXTb8bR@elmer.db.elephantsql.com:5432/oehrcduj"
 }
@@ -71,6 +71,19 @@ def homepage():
 
     <img src="http://loremflickr.com/600/400">
     """.format(time=the_time)
+
+@app.route('/tony')
+def homepage2():
+    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+
+    return """
+    <h1>Hello Tony!</h1>
+    <p>It is currently {time}.</p>
+
+    <img src="http://loremflickr.com/600/400">
+    """.format(time=the_time)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
