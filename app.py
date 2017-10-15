@@ -1,6 +1,7 @@
 from flask import Flask, request
 from datetime import datetime
 
+
 app = Flask(__name__)
 
 
@@ -24,7 +25,7 @@ db.init_app(app)
 
 import json
 import psycopg2
-import sys
+#import sys
 
 with open('config.json') as f:
     conf = json.load(f)
@@ -117,7 +118,12 @@ def homepage2():
 def homepage3():
     cursor.execute("""select * from public.sia_app_db""")
     all_rows = cursor.fetchall()
-    return all_rows
+    from flask import jsonify
+    return jsonify(all_rows)
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    app.run(host="0.0.0.0", debug=True, use_reloader=True)
+
+
+   # port = int(os.environ.get("PORT", 5000))
+  #  app.run(host="0.0.0.0", port=port)
